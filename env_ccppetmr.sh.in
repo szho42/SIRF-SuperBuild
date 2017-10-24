@@ -21,3 +21,4 @@ MATLABPATH=@CCPPETMR_INSTALL@/matlab
 export MATLABPATH
 
 PATH=$PATH:@CCPPETMR_INSTALL@/bin
+export STIR_exercises_PATH="$SIRF_PATH/../STIR-exercises"
