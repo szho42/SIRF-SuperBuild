@@ -2,7 +2,7 @@
 [ -f .bashrc ] && . .bashrc
 set -ev
 INSTALL_DIR="${1:-/opt}"
-# SIRF
+# SIRF v2
 git clone https://github.com/CCPPETMR/SIRF-SuperBuild --recursive -b master $INSTALL_DIR/SIRF-SuperBuild
 pushd $INSTALL_DIR/SIRF-SuperBuild
 

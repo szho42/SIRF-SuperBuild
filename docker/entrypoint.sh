@@ -11,7 +11,11 @@ export HOME=/home/$mainUser
 
 if [ -d $HOME ]; then
   cd $HOME
-  exec gosu $mainUser "$@"
+  if [ "$@" = "/usr/local/bin/service.sh" ]; then
+    bash /usr/local/bin/service.sh
+  else
+    exec gosu $mainUser "$@"
+  fi
 fi
 
 cd /
@@ -21,13 +25,12 @@ cd $HOME
 echo "$UID:$GID Creating and switching to: $mainUser:$USER_ID:$GROUP_ID"
 # groupadd -g $GROUP_ID -o -f $mainUser
 addgroup --quiet --system --gid "$GROUP_ID" "$mainUser"
-# useradd --shell /bin/bash -u $USER_ID -o -c "" -M -d $HOME \
-#   -g $mainUser -G sudo $mainUser \
-#   -p $(echo somepassword | openssl passwd -1 -stdin)
-adduser --quiet --system --shell /bin/bash \
-  --no-create-home --home /home/"$mainUser" \
-  --ingroup "$mainUser" --uid "$USER_ID" "$mainUser"
-
+useradd --system --shell /bin/bash -u $USER_ID -o -c "" -M -d $HOME \
+   -g $mainUser -G sudo $mainUser \
+   -p $(echo virtual | openssl passwd -1 -stdin)
+#adduser --quiet --system --shell /bin/bash \
+#  --no-create-home --home /home/"$mainUser" \
+#  --ingroup "$mainUser" --uid "$USER_ID" "$mainUser"
 echo "$mainUser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/"$mainUser"
 
 for i in /opt/* "$HOME"; do
@@ -37,4 +40,8 @@ for i in /opt/* "$HOME"; do
   fi
 done
 
-exec gosu $mainUser "$@"
+if [ "$@" = "/usr/local/bin/service.sh" ]; then
+  bash /usr/local/bin/service.sh
+else
+  exec gosu $mainUser "$@"
+fi

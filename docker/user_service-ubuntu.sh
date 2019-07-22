@@ -12,3 +12,6 @@ if [ -f requirements-service.txt ]; then
 fi
 
 # jupyter labextension install @jupyter-widgets/jupyterlab-manager
+
+python -m ipykernel install --name sirf --display-name "Python (sirf)"
+jupyter contrib nbextension install --sys-prefix

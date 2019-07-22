@@ -1,5 +1,9 @@
-jupyterlab
-jupyter
+ipykernel
 ipywidgets
-widgetsnbextension
+jupyter
+jupyter_contrib_nbextensions
+jupyterhub
+jupyterlab
 nodejs
+notebook
+widgetsnbextension
