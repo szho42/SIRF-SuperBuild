@@ -1,0 +1,6 @@
+jupyter
+jupyter_contrib_nbextensions
+jupyterhub
+jupyterlab
+notebook
+widgetsnbextension

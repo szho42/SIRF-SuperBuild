@@ -93,10 +93,9 @@ CMD ["/bin/bash"]
 FROM sirf as service
 LABEL org.jupyter.service="jupyterhub"
 
-COPY requirements-service.txt .
-COPY user_service-ubuntu.sh .
+COPY user_service-ubuntu.sh requirements-service.txt requirements-hub.txt ./
 RUN bash user_service-ubuntu.sh
-RUN rm user_service-ubuntu.sh requirements-service.txt
+RUN rm user_service-ubuntu.sh requirements-service.txt requirements-hub.txt
 
 COPY service.sh /usr/local/bin/
 CMD ["/usr/local/bin/service.sh"]

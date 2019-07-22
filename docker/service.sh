@@ -49,6 +49,7 @@ for home in $(ls -d /home/*); do
 done
 
 # start jupyter
+which jupyterhub || conda activate hub
 #jupyterhub --generate-config
 #cat "c.JupyterHub.bind_port = $JUPYTER_PORT" >> jupyterhub_confing.py
 jupyterhub --port $JUPYTER_PORT >& jupyterhub.log&

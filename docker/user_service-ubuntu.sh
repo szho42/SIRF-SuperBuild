@@ -10,8 +10,15 @@ if [ -f requirements-service.txt ]; then
   conda install -c conda-forge -y --file requirements-service.txt || \
   pip install -U -r requirements-service.txt
 fi
-
-# jupyter labextension install @jupyter-widgets/jupyterlab-manager
-
 python -m ipykernel install --name sirf --display-name "Python (sirf)"
-jupyter contrib nbextension install --sys-prefix
+
+if [ -f requirements-hub.txt ]; then
+  ( set -e
+    conda create -n hub -c conda-forge -y --file requirements-hub.txt python=3
+    conda activate hub
+  ) || \
+  pip3 install -U -r requirements-hub.txt
+
+  jupyter labextension install @jupyter-widgets/jupyterlab-manager
+  jupyter contrib nbextension install --sys-prefix
+fi
