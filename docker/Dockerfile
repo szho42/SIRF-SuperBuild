@@ -1,4 +1,4 @@
-FROM ubuntu:18.04 as base
+FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04 as base
 LABEL \
   author.name="Casper da Costa-Luis"          \
   author.email=imaging@caspersci.uk.to        \
