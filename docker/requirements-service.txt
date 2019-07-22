@@ -1,5 +1,0 @@
-ipykernel
-ipywidgets
-keras
-tensorboard
-tensorflow-gpu
