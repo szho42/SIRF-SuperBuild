@@ -20,8 +20,9 @@ services:
   #  - NET_ADMIN
   #TODO: uncomment for external gadgetron
   # network_mode: "host"  # host only works on linux: https://docs.docker.com/network/host/
-  # depends_on:
-  #  - gadgetron
+  depends_on:
+  - core
+  #- gadgetron
   volumes:
    - ./devel:/devel
  core:
@@ -32,6 +33,8 @@ services:
    cache_from:
     - ubuntu:18.04
     - ccppetmr/sirf:core
+  entrypoint: /bin/bash -c
+  command: exit 0
  gadgetron:
   container_name: gadgetron
   image: gadgetron/ubuntu_1804_no_cuda:latest
