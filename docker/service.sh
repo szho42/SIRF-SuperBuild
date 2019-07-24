@@ -42,9 +42,9 @@ popd
 which unzip || sudo apt-get install -yqq unzip
 for home in $(ls -d /home/*); do
   pushd $home
-  [ -d SIRF-Exercises ] || cp -a $SIRF_PATH/../../../SIRF-Exercises .
-  for i in SIRF-Exercises/scripts/download_*.sh; do ./$i $PWD; done
-  #[ -e devel ] || ln -s /devel .
+  #[ -d SIRF-Exercises ] || cp -a $SIRF_PATH/../../../SIRF-Exercises .
+  #for i in SIRF-Exercises/scripts/download_*.sh; do ./$i $PWD; done
+  [ -e devel ] || ln -s /devel .
   popd
 done
 

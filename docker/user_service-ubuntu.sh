@@ -4,7 +4,8 @@ set -ev
 INSTALL_DIR="${1:-/opt}"
 
 # SIRF-Exercises
-git clone https://github.com/CCPPETMR/SIRF-Exercises --recursive -b master $INSTALL_DIR/SIRF-Exercises
+git clone https://github.com/CCPPETMR/SIRF-Exercises --recursive -b master
+# $INSTALL_DIR/SIRF-Exercises
 
 conda install -c conda-forge -y ipykernel ipywidgets && conda clean -y --all|| \
   pip install --no-cache-dir ipykernel ipywidgets
