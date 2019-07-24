@@ -50,9 +50,14 @@ done
 
 # start jupyter
 which jupyterhub || conda activate hub
+#alias jupyterhub=/opt/pyvenv/envs/hub/bin/jupyterhub
 #jupyterhub --generate-config
-#cat "c.JupyterHub.bind_port = $JUPYTER_PORT" >> jupyterhub_confing.py
-jupyterhub --port $JUPYTER_PORT >& jupyterhub.log&
+echo "c.JupyterHub.bind_port = $JUPYTER_PORT
+import os
+for var in os.environ:
+    c.Spawner.env_keep.append(var)
+" >> jupyterhub_config.py
+jupyterhub >& jupyterhub.log&
 
 trap "stop_service" SIGTERM
 trap "stop_service" SIGINT
