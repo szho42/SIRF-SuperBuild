@@ -5,7 +5,11 @@ INSTALL_DIR="${1:-/opt}"
 
 # SIRF-Exercises
 git clone https://github.com/CCPPETMR/SIRF-Exercises --recursive -b master
-# $INSTALL_DIR/SIRF-Exercises
+# for downloading SIRF-Exercises data
+which unzip || apt-get install -yqq unzip && apt-get clean
+
+# link /devel share
+[ -e ./devel ] || ln -s /devel
 
 conda install -c conda-forge -y ipykernel ipywidgets && conda clean -y --all|| \
   pip install --no-cache-dir ipykernel ipywidgets

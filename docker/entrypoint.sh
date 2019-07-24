@@ -10,10 +10,10 @@ export HOME=/home/$mainUser
 
 if [ -d $HOME ]; then
   cd $HOME
-  if [ "$@" = "/usr/local/bin/service.sh" ]; then
-    bash /usr/local/bin/service.sh
-  else
+  if [ -n "$@" ]; then
     exec gosu $mainUser "$@"
+  else
+    exit 0
   fi
 fi
 
@@ -39,8 +39,8 @@ for i in /opt/* "$HOME"; do
 done
 
 cd $HOME
-if [ "$@" = "/usr/local/bin/service.sh" ]; then
-  bash /usr/local/bin/service.sh
-else
+if [ -n "$@" ]; then
   exec gosu $mainUser "$@"
+else
+  exit 0
 fi

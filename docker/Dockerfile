@@ -61,13 +61,11 @@ LABEL description="CCP PET-MR SIRF"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-COPY .bashrc .
-COPY .profile .
+COPY .bashrc .profile ./
 RUN chmod 644 .bashrc .profile
 
 # Python (virtualenv)
-COPY requirements.txt .
-COPY user_python-ubuntu.sh .
+COPY user_python-ubuntu.sh requirements.txt ./
 RUN bash user_python-ubuntu.sh
 RUN rm user_python-ubuntu.sh requirements.txt
 
@@ -97,5 +95,6 @@ COPY user_service-ubuntu.sh requirements-hub.txt ./
 RUN bash user_service-ubuntu.sh
 RUN rm user_service-ubuntu.sh requirements-hub.txt
 
-COPY service.sh /usr/local/bin/
+COPY entrypoint-service.sh service.sh /usr/local/bin/
+ENTRYPOINT ["/usr/local/bin/entrypoint-service.sh"]
 CMD ["/usr/local/bin/service.sh"]

@@ -38,16 +38,6 @@ GCONFIG=./INSTALL/share/gadgetron/config/gadgetron.xml
   && ./INSTALL/bin/gadgetron >& gadgetron.log&
 popd
 
-# copy & create SIRF-Exercises
-which unzip || sudo apt-get install -yqq unzip
-for home in $(ls -d /home/*); do
-  pushd $home
-  #[ -d SIRF-Exercises ] || cp -a $SIRF_PATH/../../../SIRF-Exercises .
-  #for i in SIRF-Exercises/scripts/download_*.sh; do ./$i $PWD; done
-  [ -e devel ] || ln -s /devel .
-  popd
-done
-
 # start jupyter
 which jupyterhub || conda activate hub
 #alias jupyterhub=/opt/pyvenv/envs/hub/bin/jupyterhub
