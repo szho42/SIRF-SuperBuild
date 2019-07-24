@@ -42,7 +42,7 @@ popd
 which jupyterhub || conda activate hub
 #alias jupyterhub=/opt/pyvenv/envs/hub/bin/jupyterhub
 #jupyterhub --generate-config
-echo "c.JupyterHub.bind_port = $JUPYTER_PORT
+echo "c.JupyterHub.port = $JUPYTER_PORT
 import os
 for var in os.environ:
     c.Spawner.env_keep.append(var)
