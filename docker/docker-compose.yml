@@ -34,10 +34,10 @@ services:
     - ccppetmr/sirf:core
  gadgetron:
   container_name: gadgetron
-  image: gadgetron/ubuntu_1804_no_cuda:latest
+  #image: gadgetron/ubuntu_1804_no_cuda:latest
   # For GPU, use this instead:
-  #image: gadgetron/ubuntu_1804_cuda90_cudnn7:latest
-  #runtime: nvidia
+  image: gadgetron/ubuntu_1804_cuda100_cudnn7_base:latest
+  # runtime: nvidia
   restart: unless-stopped
   environment:
    GADGETRON_RELAY_HOST: 0.0.0.0
