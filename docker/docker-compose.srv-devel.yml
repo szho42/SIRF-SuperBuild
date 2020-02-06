@@ -1,0 +1,12 @@
+version: '2.3'
+services:
+ sirf:
+  image: ccppetmr/sirf:service-devel
+  build:
+   args:
+    EXTRA_BUILD_FLAGS: "-DDEVEL_BUILD=ON"
+   cache_from:
+    - ccppetmr/sirf:core
+    - ccppetmr/sirf:latest
+    - ccppetmr/sirf:service
+    - ccppetmr/sirf:service-devel
