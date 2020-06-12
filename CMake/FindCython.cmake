@@ -8,11 +8,9 @@
 
 # This finds the "cython" executable in your PATH, and then in some standard
 # paths:
-SET(CYTHON_EXECUTABLE cython CACHE STRING "Cython executable name")
-SET(CYTHON_FLAGS --cplus --fast-fail)
-
-SET(Cython_FOUND FALSE)
-IF (CYTHON_EXECUTABLE)
+macro(FindCython executable flags)
+  SET(Cython_FOUND FALSE)
+  IF (CYTHON_EXECUTABLE)
     # Try to run Cython, to make sure it works:
     execute_process(
         COMMAND ${CYTHON_EXECUTABLE} "--version"
@@ -27,8 +25,20 @@ IF (CYTHON_EXECUTABLE)
     else (CYTHON_RESULT EQUAL 0)
         SET(Cython_Compilation_Failed TRUE)
     endif (CYTHON_RESULT EQUAL 0)
-ENDIF (CYTHON_EXECUTABLE)
+  ENDIF (CYTHON_EXECUTABLE)
+endmacro()
 
+SET(CYTHON_EXECUTABLE cython CACHE STRING "Cython executable name" FORCE)
+SET(CYTHON_FLAGS --cplus --fast-fail)
+
+FindCython(${CYTHON_EXECUTABLE} ${CYTHON_FLAGS})
+
+message(WARNING "Trying to find ${CYTHON_EXECUTABLE}")
+SET(CYTHON_EXECUTABLE cython3 CACHE STRING "Cython executable name" FORCE)
+SET(CYTHON_FLAGS --cplus --fast-fail)
+
+message(WARNING "Trying to find ${CYTHON_EXECUTABLE}")
+FindCython(${CYTHON_EXECUTABLE} ${CYTHON_FLAGS})
 
 IF (Cython_FOUND)
 	IF (NOT Cython_FIND_QUIETLY)
